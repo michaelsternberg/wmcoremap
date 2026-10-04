@@ -1,0 +1,117 @@
+.TH WMCOREMAP 1 "October 2026" "wmcoremap 0.1" "Window Maker dockapps"
+.SH NAME
+wmcoremap \- per-core CPU load heatmap dockapp for Window Maker
+.SH SYNOPSIS
+.B wmcoremap
+[\fIoptions\fR]
+.SH DESCRIPTION
+.B wmcoremap
+is a 64x64 dockapp that shows every logical CPU as one LED in a grid. The
+colour of each LED follows that CPU's load, in the colours of wmsysmon:
+dark grey-green when idle, bright green under moderate load, then yellow,
+orange and red near 100%. LEDs shrink when there are too many CPUs for
+the chosen size, so it works for a handful of cores as well as for
+machines with a hundred or more. A CPU that is offline is drawn as a hollow
+ring.
+.PP
+The bottom row shows total CPU use and the CPU temperature. Left click
+cycles through these screens, whose name appears in the top left corner:
+.TP
+.B CPU
+the per-core heatmap; the number at the top right is the CPU count.
+.TP
+.B LOAD
+total CPU use over the last 54 samples.
+.TP
+.B TEMP
+CPU temperature over the last 54 samples (only when a sensor is found).
+.TP
+.B GPU
+GPU busy percentage over time, with VRAM use in the bottom row (only for
+AMD cards on the amdgpu driver).
+.SH OPTIONS
+.TP
+.BI \-display " display"
+X display to connect to.
+.TP
+.BR \-c ", " \-celsius
+Show temperatures in degrees Celsius (the default).
+.TP
+.BR \-f ", " \-fahrenheit
+Show temperatures in degrees Fahrenheit.
+.TP
+.BI \-interval " ms"
+Update period in milliseconds (default 1000). The history screens cover
+54 updates.
+.TP
+.BI \-screen " cpu|load|temp|gpu"
+Screen to show at start (default \fBcpu\fR).
+.TP
+.BI \-sensor " path"
+Temperature input to read, in millidegrees Celsius, e.g.
+\fI/sys/class/hwmon/hwmon1/temp1_input\fR. By default the k10temp,
+zenpower, coretemp, cpu_thermal and soc_thermal hwmon drivers are tried,
+then the x86_pkg_temp and acpitz thermal zones.
+.TP
+.BI \-fg " color"
+Text colour (default #20B2AE).
+.TP
+.BI \-bg " color"
+Background colour (default #202020).
+.TP
+.BR \-size " " small | medium | large
+LED size; one of the words
+.BR small ,
+.B medium
+or
+.B large
+(the default):
+.RS
+.TP 8
+.B small
+4x4 pixel LEDs spaced 1 pixel apart, as in wmsysmon
+.TP
+.B medium
+6x6 pixel LEDs
+.TP
+.B large
+9x9 pixel LEDs
+.RE
+.IP
+With too many CPUs for the chosen size the LEDs are made smaller.
+.TP
+.B \-square
+Draw square cells instead of round LEDs.
+.TP
+.BI \-fake " n"
+Simulate \fIn\fR CPUs with synthetic load, to see how the grid looks on a
+larger machine.
+.TP
+.BR \-h ", " \-help
+Show a summary of the options.
+.SH MOUSE
+.TP
+.B Left
+Next screen.
+.TP
+.B Wheel
+Previous / next screen.
+.TP
+.B Right
+Switch between Celsius and Fahrenheit.
+.SH FILES
+.TP
+.I /proc/stat
+Per-CPU time counters.
+.TP
+.I /sys/class/hwmon/*/temp*_input, /sys/class/thermal/thermal_zone*/temp
+Temperature sensors.
+.TP
+.I /sys/class/drm/card*/device/gpu_busy_percent
+AMD GPU load (amdgpu driver only).
+.SH SEE ALSO
+.BR wmaker (1),
+.BR wmtop (1),
+.BR wmsysmon (1)
+.SH AUTHOR
+Michael Sternberg <mhsternberg@gmail.com>

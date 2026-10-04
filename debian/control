@@ -1,0 +1,27 @@
+Source: wmcoremap
+Section: x11
+Priority: optional
+Maintainer: Michael Sternberg <mhsternberg@gmail.com>
+Build-Depends: debhelper-compat (= 13),
+               pkgconf,
+               libx11-dev,
+               libxext-dev
+Standards-Version: 4.7.2
+Homepage: https://github.com/michaelsternberg/wmcoremap
+Vcs-Git: https://github.com/michaelsternberg/wmcoremap.git
+Vcs-Browser: https://github.com/michaelsternberg/wmcoremap
+Rules-Requires-Root: no
+
+Package: wmcoremap
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Enhances: wmaker
+Description: per-core CPU heatmap dockapp for Window Maker
+ wmcoremap shows every logical CPU as one LED in a grid inside a 64x64
+ Window Maker dock tile. Each LED's colour follows the load of its CPU,
+ from dark grey-green at idle through green to yellow and red near 100%. The
+ grid scales from a few cores to a hundred or more.
+ .
+ The tile also shows total CPU use and the CPU temperature (Celsius or
+ Fahrenheit), and left click cycles to load and temperature history
+ graphs and, on amdgpu systems, GPU load.
