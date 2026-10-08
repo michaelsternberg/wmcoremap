@@ -1,6 +1,10 @@
 # Changelog
 
-## 0.1 (2026-10-04)
+All notable changes to wmcoremap are listed here.
+
+## Unreleased
+
+## [0.1] (2026-10-04)
 
 - First version: per-core CPU heatmap in a 64x64 Window Maker dockapp,
   in the wmtop LED style. The grid scales from 1 to 1024 CPUs.
@@ -17,3 +21,5 @@
   history, temperature history, and GPU busy % / VRAM on amdgpu.
 - Options: -interval, -screen, -fg, -bg, -square, -fake N for testing
   layouts.
+
+[0.1]: https://github.com/michaelsternberg/wmcoremap/releases/tag/v0.1

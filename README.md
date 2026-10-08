@@ -129,6 +129,11 @@ averaged with the previous one so the LEDs do not flicker. The tile is drawn
 into a 64x64 framebuffer and pushed to the dockapp's icon window, all in one
 `poll()` loop on the X connection.
 
+## Contributing
+
+Bug reports and patches are welcome; see [CONTRIBUTING.md](CONTRIBUTING.md).
+Changes between versions are listed in [CHANGELOG.md](CHANGELOG.md).
+
 ## License
 
 GPL version 2 or later; see [COPYING](COPYING).
